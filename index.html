@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Baccarat Referee Supreme Elite X</title>
+
+<style>
+:root{
+--cyan:#00eaff;
+--blue:#2f8dff;
+--red:#ff465c;
+--green:#00ff9d;
+--txt:#ecffff;
+--line:#00eaff33;
+--glass:rgba(255,255,255,.045);
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+color:var(--txt);
+background:
+radial-gradient(circle at 15% 20%,#17356b 0%,transparent 35%),
+radial-gradient(circle at 85% 30%,#0c5d73 0%,transparent 30%),
+linear-gradient(145deg,#07101f,#111d40);
+}
+
+/* LOGIN */
+#loginPage,#expiredPage{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+}
+
+.loginBox{
+width:410px;
+max-width:100%;
+padding:35px;
+border-radius:28px;
+background:var(--glass);
+border:1px solid var(--line);
+backdrop-filter:blur(18px);
+box-shadow:0 0 40px #00eaff25;
+}
+
+.loginTitle{
+font-size:30px;
+font-weight:900;
+text-align:center;
+margin-bottom:25px;
+color:var(--cyan);
+}
+
+.inputWrap{
+position:relative;
+margin-bottom:18px;
+}
+
+input{
+width:100%;
+padding:15px;
+border-radius:14px;
+border:1px solid #28446f;
+background:#0d1832;
+color:#fff;
+font-size:16px;
+outline:none;
+}
+
+.eye{
+position:absolute;
+right:14px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+font-size:20px;
+}
+
+.loginBtn{
+width:100%;
+padding:15px;
+border:none;
+border-radius:14px;
+font-weight:900;
+cursor:pointer;
+background:linear-gradient(45deg,var(--cyan),var(--green));
+}
+
+.err{
+display:none;
+margin-top:12px;
+text-align:center;
+color:#ff8ba0;
+font-weight:700;
+}
+
+/* EXPIRED */
+#expiredPage{
+display:none;
+}
+.expiredBox{
+max-width:500px;
+padding:40px;
+text-align:center;
+border-radius:30px;
+background:#25111c;
+border:1px solid #ff5776;
+box-shadow:0 0 40px #ff577633;
+}
+.expiredBox h1{
+margin:0 0 15px;
+color:#ff6a86;
+}
+.expiredBox p{
+line-height:1.8;
+}
+
+/* APP */
+#app{display:none}
+
+.wrap{
+max-width:1600px;
+margin:auto;
+padding:16px;
+}
+
+.expire{
+font-size:13px;
+padding:8px 14px;
+text-align:center;
+margin-bottom:14px;
+border-radius:14px;
+font-weight:700;
+background:#2c1321;
+border:1px solid #ff6588;
+}
+
+.box{
+background:var(--glass);
+border:1px solid var(--line);
+border-radius:24px;
+backdrop-filter:blur(15px);
+box-shadow:0 0 28px #00eaff15;
+}
+
+.main{
+display:grid;
+grid-template-columns:1.15fr 1fr 1.28fr;
+gap:18px;
+}
+
+.panel{
+padding:18px;
+min-height:760px;
+}
+
+.title{
+font-size:21px;
+font-weight:900;
+margin-bottom:14px;
+color:var(--cyan);
+}
+
+.controls{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:12px;
+}
+
+button{
+border:none;
+padding:14px 22px;
+border-radius:14px;
+font-weight:900;
+cursor:pointer;
+}
+
+.p{background:var(--blue);color:#fff;}
+.b{background:var(--red);color:#fff;}
+.t{background:#00d98a;color:#021;}
+.u{background:#2b3d61;color:#fff;}
+
+.miniStats{
+padding:11px;
+margin-bottom:14px;
+text-align:center;
+border-radius:14px;
+font-weight:800;
+background:#0d1730;
+}
+
+#road{
+display:flex;
+gap:2px;
+overflow:auto;
+min-height:430px;
+}
+
+.col{
+display:grid;
+grid-template-rows:repeat(6,42px);
+gap:2px;
+}
+
+.cell{
+width:42px;height:42px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#162445;
+font-weight:900;
+}
+
+.P{background:var(--blue);}
+.B{background:var(--red);}
+.T{background:#00d98a;color:#031;}
+
+.signal{
+text-align:center;
+padding:28px;
+}
+
+#bet{
+font-size:84px;
+font-weight:900;
+animation:pulse .8s infinite alternate;
+}
+
+.betP{color:var(--blue)}
+.betB{color:var(--red)}
+.betWAIT{color:#ffd65a}
+
+@keyframes pulse{
+to{
+transform:scale(1.05);
+filter:drop-shadow(0 0 18px #00ff9d);
+}
+}
+
+.bar{
+height:18px;
+background:#101932;
+border-radius:50px;
+overflow:hidden;
+margin:16px 0;
+}
+
+.fill{
+height:100%;
+width:50%;
+background:linear-gradient(90deg,var(--cyan),var(--green));
+}
+
+.aiGrid{
+display:grid;
+gap:11px;
+max-height:690px;
+overflow:auto;
+}
+
+.ai{
+padding:14px;
+border-radius:16px;
+background:#0f1931;
+border:1px solid #28446e;
+}
+
+.topAI{
+border:2px solid var(--green);
+animation:champ .7s infinite alternate;
+}
+
+@keyframes champ{
+to{
+transform:scale(1.03);
+box-shadow:0 0 28px #00ff9d66;
+}
+}
+
+.head{
+display:flex;
+justify-content:space-between;
+font-weight:800;
+}
+
+.pickP{color:var(--blue)}
+.pickB{color:var(--red)}
+
+.flash{
+animation:blink .45s infinite alternate;
+}
+
+@keyframes blink{
+to{
+opacity:.55;
+transform:scale(1.15);
+}
+}
+
+.hist{
+display:grid;
+grid-template-columns:repeat(8,1fr);
+gap:5px;
+margin-top:8px;
+}
+
+.hit{
+height:18px;
+font-size:11px;
+border-radius:6px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.w{background:#00ba73}
+.l{background:#d63d5e}
+
+/* =========================
+REFEREE HISTORY
+========================= */
+
+.refWrap{
+margin-top:18px;
+padding-top:14px;
+border-top:1px solid #28446e;
+}
+
+.refWinrate{
+padding:10px;
+border-radius:12px;
+text-align:center;
+font-size:14px;
+font-weight:900;
+margin-bottom:12px;
+background:#13203f;
+border:1px solid #28446e;
+color:#7fffd4;
+}
+
+.refHistory{
+display:grid;
+
+/* ✅ 13 ช่องแนวนอน */
+grid-template-columns:repeat(13,34px);
+
+/* ✅ เรียงซ้าย → ขวา */
+grid-auto-flow:row;
+
+gap:6px;
+
+/* ✅ สูงได้ไม่จำกัด */
+max-height:260px;
+
+overflow-y:auto;
+overflow-x:hidden;
+
+justify-content:start;
+align-content:start;
+}
+
+.refItem{
+width:34px;
+height:34px;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+font-weight:900;
+}
+
+.refWin{
+background:#00c97b;
+color:#021;
+}
+
+.refLose{
+background:#ff4d6d;
+color:#fff;
+}
+
+
+pre{
+white-space:pre-wrap;
+line-height:1.7;
+font-size:14px;
+}
+
+@media(max-width:1200px){
+.main{grid-template-columns:1fr}
+}
+
+
+
+</style>
+</head>
+<body>
+
+<div id="loginPage">
+<div class="loginBox">
+<div class="loginTitle">SUPREME LOGIN</div>
+
+<div class="inputWrap">
+<input id="user" placeholder="Username">
+</div>
+
+<div class="inputWrap">
+<input id="pass" type="password" placeholder="Password">
+<span class="eye" onclick="togglePass()">👁</span>
+</div>
+
+<button class="loginBtn" onclick="login()">LOGIN</button>
+<div id="err" class="err">Username / Password ไม่ถูกต้อง</div>
+
+</div>
+</div>
+
+<div id="expiredPage">
+<div class="expiredBox">
+<h1>LICENSE EXPIRED</h1>
+<p>
+หมดอายุการใช้งานแล้ว<br>
+วันหมดอายุ 1 มิถุนายน พ.ศ.2569
+</p>
+</div>
+</div>
+
+
+<div id="app">
+<div class="wrap">
+
+<div class="expire">
+🔒 วันหมดอายุ : 1 มิถุนายน พ.ศ.2569
+</div>
+
+<div class="main">
+
+<div class="box panel">
+<div class="title">Control + Bead Road</div>
+
+<div class="controls">
+<button class="p" onclick="pushResult('P')">P</button>
+<button class="b" onclick="pushResult('B')">B</button>
+<button class="t" onclick="pushResult('T')">T</button>
+<button class="u" onclick="undo()">Undo</button>
+<button class="u" onclick="resetAll()">Clear</button>
+</div>
+
+<div id="miniStats" class="miniStats">
+P:0 | B:0 | T:0 | Total:0
+</div>
+
+<div id="road"></div>
+</div>
+
+
+<div class="box panel">
+
+<div class="title">กรรมการชี้ขาด 3 เลเยอร์ Referee</div>
+
+<div class="signal">
+<div id="bet" class="betWAIT">WAIT</div>
+<div id="confidence">confidence --%</div>
+
+<div class="bar">
+<div id="meter" class="fill"></div>
+</div>
+
+<div id="mode">NO BET</div>
+</div>
+
+<pre id="layers"></pre>
+
+<div class="refWrap">
+
+<div id="refWinrate"
+class="refWinrate">
+WINRATE 0%
+</div>
+
+<div id="refHistory"
+class="refHistory"></div>
+
+</div>
+
+</div>
+
+<div class="box panel">
+<div class="title">
+10 AI Engines
+</div>
+
+<div id="aiGrid"
+class="aiGrid"></div>
+
+</div>
+
+</div>
+</div>
+
+
+<script>
+/* ========= REAL EXPIRY ========= */
+const expiryDate = new Date("2026-06-01T23:59:59");
+
+function isExpired(){
+return new Date()>expiryDate;
+}
+
+if(isExpired()){
+loginPage.style.display="none";
+expiredPage.style.display="flex";
+}
+
+/* LOGIN */
+function login(){
+
+if(isExpired()){
+loginPage.style.display="none";
+expiredPage.style.display="flex";
+return;
+}
+
+if(user.value==="1234" && pass.value==="1234"){
+loginPage.style.display="none";
+app.style.display="block";
+}else{
+err.style.display="block";
+}
+}
+
+function togglePass(){
+pass.type=
+pass.type==="password"
+?"text":"password";
+}
+
+/* ENGINE */
+const names=[
+"Trend","Reversal","Dragon","Frequency","Cycle",
+"Momentum","Road","Shadow","Voting","Meta"
+];
+
+let shoe=[];
+let ai=[];
+
+/* =========================
+REFEREE HISTORY
+========================= */
+
+let refereeHistory=[];
+
+function initAI(){
+ai=names.map(n=>({
+name:n,next:"P",
+acc:Array(16).fill(null),
+weight:1,
+conf:50
+}));
+}
+
+function referee(){
+
+let [p,b]=freqScore();
+let mk=markov();
+let m=momentum();
+
+// Layer 1
+let l1P=p/(p+b||1);
+let l1B=b/(p+b||1);
+
+// Layer 2
+let l2P=m%2?0.55:0.45;
+let l2B=1-l2P;
+
+// Layer 3
+let l3P=mk.P;
+let l3B=mk.B;
+
+// รวมคะแนน
+let finalP=(l1P*0.4)+(l2P*0.3)+(l3P*0.3);
+let finalB=(l1B*0.4)+(l2B*0.3)+(l3B*0.3);
+
+let pick=finalP>finalB?"P":"B";
+let confidence=Math.round(Math.max(finalP,finalB)*100);
+
+return {pick,confidence};
+
+}
+
+
+
+function predict(i){
+let clean=shoe.filter(x=>x!=="T");
+let p=clean.filter(x=>x=="P").length;
+let b=clean.filter(x=>x=="B").length;
+let last=clean.at(-1)||"P";
+let streak=0;
+
+for(let j=clean.length-1;j>=0;j--){
+if(clean[j]===last) streak++;
+else break;
+}
+
+switch(i){
+case 0:return streak>=3?(last=="P"?"B":"P"):last;
+case 1:return last=="P"?"B":"P";
+case 2:return p>b?"P":"B";
+case 3:return clean.slice(-3).join("")=="PPP"?"B":"P";
+case 4:return clean.slice(-3).join("")=="BBB"?"P":"B";
+case 5:return clean.length%2?"P":"B";
+case 6:return streak>=2?last:(last=="P"?"B":"P");
+case 7:return b>p?"B":"P";
+case 8:return clean.length%3?"P":"B";
+default:return p>=b?"P":"B";
+}
+}
+
+function pushResult(r){
+
+if(shoe.length && r!=="T"){
+ai.forEach(a=>{
+let win=(a.next===r);
+
+a.acc.shift();
+a.acc.push(win);
+
+if(win)a.weight=Math.min(3,a.weight+.09);
+else a.weight=Math.max(.6,a.weight-.07);
+});
+}
+
+shoe.push(r);
+
+/* =========================
+CHECK REFEREE RESULT
+========================= */
+
+if(r !== "T"){
+
+let currentPick = bet.innerHTML;
+
+if(
+currentPick === "P" ||
+currentPick === "B"
+){
+
+let isWin =
+currentPick === r;
+
+refereeHistory.push({
+
+pick: currentPick,
+
+result:
+isWin ? "✓" : "X"
+
+});
+
+/* ไม่จำกัด */
+if(refereeHistory.length > 999999){
+
+refereeHistory.shift();
+
+}
+
+}
+
+}
+
+ai.forEach((a,i)=>{
+
+a.next=predict(i);
+let wins=a.acc.filter(v=>v===true).length;
+a.conf=Math.min(99,61+wins*2+a.weight*8|0);
+});
+
+render();
+}
+
+function undo(){
+
+if(shoe.length===0) return;
+
+/* ลบผลล่าสุด */
+let last = shoe.pop();
+
+/* ถ้าไม่ใช่ T ให้ลบ referee ล่าสุดด้วย */
+if(last !== "T" && refereeHistory.length){
+refereeHistory.pop();
+}
+
+/* รีคำนวณ AI ใหม่ทั้งหมด */
+initAI();
+
+let temp = [...shoe];
+shoe = [];
+
+temp.forEach(r=>{
+
+if(shoe.length && r!=="T"){
+
+ai.forEach(a=>{
+
+let win = (a.next === r);
+
+a.acc.shift();
+a.acc.push(win);
+
+if(win)a.weight=Math.min(3,a.weight+.09);
+else a.weight=Math.max(.6,a.weight-.07);
+
+});
+
+}
+
+shoe.push(r);
+
+ai.forEach((a,i)=>{
+
+a.next = predict(i);
+
+let wins =
+a.acc.filter(v=>v===true).length;
+
+a.conf =
+Math.min(99,61+wins*2+a.weight*8|0);
+
+});
+
+});
+
+render();
+}
+
+function resetAll(){
+
+shoe=[];
+
+/* รีเซ็ต history */
+refereeHistory=[];
+
+/* รีเซ็ต AI */
+initAI();
+
+/* รีเซ็ต UI */
+bet.innerHTML="WAIT";
+bet.className="betWAIT";
+
+confidence.innerHTML=
+"Confidence --%";
+
+mode.innerHTML=
+"NO BET";
+
+meter.style.width="50%";
+
+layers.textContent="";
+
+render();
+}
+
+function renderRoad(){
+road.innerHTML="";
+let cols=Math.ceil(shoe.length/6)||1;
+
+for(let c=0;c<cols;c++){
+let col=document.createElement("div");
+col.className="col";
+
+for(let r=0;r<6;r++){
+let i=c*6+r;
+let d=document.createElement("div");
+d.className="cell";
+if(shoe[i]){
+d.classList.add(shoe[i]);
+d.innerHTML=shoe[i];
+}
+col.appendChild(d);
+}
+road.appendChild(col);
+}
+}
+
+function referee(){
+
+let P=0,B=0;
+
+ai.forEach(a=>{
+if(a.next=="P")P+=a.conf*a.weight;
+else B+=a.conf*a.weight;
+});
+
+let pick=P>=B?"P":"B";
+
+let conf=Math.round(
+Math.max(P,B)/(P+B||1)*100
+);
+
+if(conf<62){
+pick="WAIT";
+bet.className="betWAIT";
+}else if(pick=="P"){
+bet.className="betP";
+}else{
+bet.className="betB";
+}
+
+bet.innerHTML=pick;
+confidence.innerHTML="Confidence "+conf+"%";
+meter.style.width=conf+"%";
+mode.innerHTML=conf<62?"NO BET":"ACTIVE EDGE";
+
+layers.textContent=
+`Layer1 Vote: P ${Math.round(P)} / B ${Math.round(B)}
+Layer2 Consensus: ${pick}
+Layer3 Confidence: ${conf}%`;
+}
+
+function renderAI(){
+
+ai.sort((a,b)=>b.conf-a.conf);
+let top=ai[0].conf;
+
+aiGrid.innerHTML="";
+
+ai.forEach(a=>{
+let clr=a.next=="P"?"pickP":"pickB";
+
+let d=document.createElement("div");
+d.className="ai"+(a.conf===top?" topAI":"");
+
+d.innerHTML=`
+<div class='head'>
+<span>${a.name}</span>
+<span class='${clr} ${a.conf===top?"flash":""}'>
+${a.next} ${a.conf}% ${a.conf===top?"👑":""}
+</span>
+</div>
+
+<div class='hist'>
+${a.acc.map(v=>{
+if(v===null) return "<div class='hit'>-</div>";
+return `<div class='hit ${v?"w":"l"}'>${v?"✓":"✕"}</div>`;
+}).join("")}
+</div>
+`;
+
+aiGrid.appendChild(d);
+});
+}
+
+function renderReferee(){
+
+/* =========================
+WINRATE
+========================= */
+
+let wins =
+refereeHistory.filter(
+x=>x.result==="✓"
+).length;
+
+let total =
+refereeHistory.length || 1;
+
+let rate =
+Math.round(
+(wins/total)*100
+);
+
+refWinrate.innerHTML =
+`WINRATE ${rate}%`;
+
+/* =========================
+HISTORY
+========================= */
+
+refHistory.innerHTML =
+
+refereeHistory
+.slice(-999999)
+
+.map(x=>`
+
+<div class='refItem
+${x.result==="✓"
+?"refWin"
+:"refLose"}'>
+
+${x.pick}
+${x.result}
+
+</div>
+
+`).join("");
+
+}
+
+function counts(){
+miniStats.innerHTML=
+`P:${shoe.filter(x=>x=="P").length}
+ | B:${shoe.filter(x=>x=="B").length}
+ | T:${shoe.filter(x=>x=="T").length}
+ | Total:${shoe.length}`;
+}
+
+function render(){
+
+counts();
+renderRoad();
+renderAI();
+renderReferee();
+
+let pr = referee();   // 👈 ต้องเก็บค่า
+
+bet.innerHTML = pr.pick;
+confidence.innerHTML = "Confidence " + pr.confidence + "%";
+
+}
+
+initAI();
+render();
+
+</script>
+</body>
+</html>
